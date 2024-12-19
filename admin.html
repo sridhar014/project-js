@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px;
+            flex-direction: column;
+            height: 90vh;
+            background-image: url(./images/185289.jpg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            
+            
+        }
+
+        .main {
+            display: flex;
+            flex-direction: column;
+            width: 350px;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            background: rgba(43, 11, 58, 0.222);
+            border-radius: 15px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            gap: 10px;
+
+        }
+
+        input {
+            height: 50px;
+            border-radius: 10px;
+            background: transparent;
+            font-size: 20px;
+            color: rgb(255, 2, 2);
+            font-weight: bold;
+        }
+
+        ::placeholder {
+            color: rgba(101, 109, 105, 0.99);
+            font-weight: bold;
+            font-size: 15px;
+            position: relative;
+            left: 10px;
+
+        }
+
+        #btn {
+            height: 40px;
+            border-radius: 10px;
+            background-color: rgb(255, 255, 255);
+            margin-top: 10px;
+            width: 80px;
+            color: rgb(63, 62, 61);
+            margin-bottom: 20px;
+            font-weight: bold;
+            position: relative;
+            left: 37%;
+            font-size: 15px;
+        }
+
+        #btn:hover {
+            background-color: black;
+            color: white;
+
+        }
+        a{
+            color: rgb(117, 67, 67);
+        }
+
+        h1 {
+            color: rgb(29, 29, 29);
+            font-family: sans-serif;
+            font: weight 200px;;
+        }
+        .divguest{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .guest{
+            margin-bottom: 20px;
+            margin-top: -10px;
+        }
+        .guest1{
+            text-decoration: underline;
+            color: rgb(29, 90, 139);
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <h1>Admin Login</h1>
+        <form action="">
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Password" required>
+            <label for=""></label>
+            <input id="btn" type="submit">
+        </form>
+        <div class="divguest">
+        <p>Not a Member ? <a href="./index.html">Sign Up</a></p>
+        <p class="guest">Login as a <span class="guest1">Guest</span></p>
+    </div>
+        <script>
+
+
+
+var admin={
+    email:"sss.123@gmail.com",
+    password:"12345"
+}
+document.forms[0].addEventListener("submit", function (e) {
+    e.preventDefault();
+    var users = {
+        email: e.target[0].value,
+        password: e.target[1].value,
+    };
+
+    function clear_error() {
+    var lab = document.getElementsByTagName("label")
+    lab[0].innerText = ""
+    }
+
+    if (admin.email === users.email && admin.password === users.password) {
+        clear_error();
+        alert("Login Successfully");
+        window.location.assign("./booking.html");
+    } else {
+        var lab = document.getElementsByTagName("label");
+        lab[0].innerText = "Invalid Email or Password";
+    }
+
+
+    e.target[0].value = "";
+    e.target[1].value = "";
+
+});
+
+
+document.getElementsByClassName("guest1")[0].addEventListener("click",()=>{
+    window.location.assign("./booking.html");
+   
+})
+
+        </script>
+</body>
+
+</html>

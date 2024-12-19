@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tour planner</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="main">
+    <h1>Sign in</h1>
+    <form action="">
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Password" required>
+        <label for=""></label>
+        <input id="btn" type="submit">
+    </form>
+    <div class="divguest">
+    <p>Not a Member ? <a href="./signup.html">Sign Up</a></p>
+    <p class="guest">Login as a <span class="guest1">Guest</span></p>
+</div>
+   <script>
+    var store = localStorage.getItem("users");
+    var arr = JSON.parse(store);
+    console.log(arr);
+    
+    document.forms[0].addEventListener("submit", function (e) {
+        e.preventDefault();
+        var users = {
+            email: e.target[0].value,
+            password: e.target[1].value,
+        };
+    
+        let userdata = [];
+    
+        function clear_error() {
+        var lab = document.getElementsByTagName("label")
+        lab[0].innerText = ""
+        }
+    
+        let foundUser = arr.find((data) => {
+            return data.email === users.email && data.password === users.password;
+        });
+    
+        if (foundUser) {
+            clear_error();
+            alert("Login Successfully");
+            userdata.push(foundUser);
+            console.log(userdata)
+            localStorage.setItem("userinfo", JSON.stringify(userdata));
+            window.location.assign("./main.html");
+        } else {
+            var lab = document.getElementsByTagName("label");
+            lab[0].innerText = "Invalid Email or Password";
+        }
+    
+    
+        e.target[0].value = "";
+        e.target[1].value = "";
+    
+    });
+      
+    document.getElementsByClassName("guest1")[0].addEventListener("click",()=>{
+        window.localStorage.removeItem("userinfo")
+        window.location.assign("./main.html");
+         document.getElementsByClassName("guest")[0].style.color="red"
+    })
+    
+    
+   </script>
+</body>
+</html> 
